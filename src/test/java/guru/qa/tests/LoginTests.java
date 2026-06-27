@@ -6,11 +6,7 @@ import org.junit.jupiter.api.Test;
 import testData.TestData;
 
 import static io.qameta.allure.Allure.step;
-import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
-import static specs.login.LoginSpec.*;
-import static specs.registration.RegistrationSpec.registrationRequestSpec;
-import static specs.registration.RegistrationSpec.successfulRegistrationResponseSpec;
 import static testData.TestData.*;
 
 public class LoginTests extends TestBase {
@@ -44,7 +40,7 @@ public class LoginTests extends TestBase {
 
         step("Проверить ошибку при авторизации с неверным password", () -> {
             LoginBodyModel loginData = new LoginBodyModel(td.username, td.wrongPassword);
-            InvalidCredentialsLoginResponseModel loginResponse =api.login().loginUserWithWrongPassword(loginData);
+            InvalidCredentialsLoginResponseModel loginResponse = api.login().loginUserWithWrongPassword(loginData);
 
             String actualErrorInvalidUsernameOrPassword = loginResponse.detail();
             assertThat(actualErrorInvalidUsernameOrPassword).isEqualTo(EXPECTED_ERROR_INVALID_USERNAME_OR_PASSWORD);

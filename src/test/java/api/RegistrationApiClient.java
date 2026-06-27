@@ -29,7 +29,7 @@ public class RegistrationApiClient {
                 .as(ExistingUserResponseModel.class);
     }
 
-    public UnsupportedMediaTypeRegistrationBodyModel registerUserWithUnsupportedMediaType(RegistrationBodyModel registrationData){
+    public UnsupportedMediaTypeRegistrationBodyModel registerUserWithUnsupportedMediaType(RegistrationBodyModel registrationData) {
         return given(unsupportedMediaTypeRegistrationRequestSpec)
                 .body(registrationData)
                 .when()
@@ -38,9 +38,9 @@ public class RegistrationApiClient {
                 .spec(unsupportedMediaTypeRegistrationResponseSpec)
                 .extract()
                 .as(UnsupportedMediaTypeRegistrationBodyModel.class);
-     }
+    }
 
-     public EmptyFieldUsernameResponseModel registerUserWithEmptyUsername(RegistrationBodyModel registrationData){
+    public EmptyFieldUsernameResponseModel registerUserWithEmptyUsername(RegistrationBodyModel registrationData) {
         return given(registrationRequestSpec)
                 .body(registrationData)
                 .when()
@@ -49,9 +49,9 @@ public class RegistrationApiClient {
                 .spec(wrongUsernameResponseSpecification)
                 .extract()
                 .as(EmptyFieldUsernameResponseModel.class);
-     }
+    }
 
-     public WrongPasswordResponseModel registerUserWithEmptyPassword(RegistrationBodyModel registrationData){
+    public WrongPasswordResponseModel registerUserWithEmptyPassword(RegistrationBodyModel registrationData) {
         return given(registrationRequestSpec)
                 .body(registrationData)
                 .when()
@@ -60,9 +60,9 @@ public class RegistrationApiClient {
                 .spec(wrongPasswordResponseSpecification)
                 .extract()
                 .as(WrongPasswordResponseModel.class);
-     }
+    }
 
-     public WrongPasswordResponseModel registerUserWithTooLongPassword(RegistrationBodyModel registrationData){
+    public WrongPasswordResponseModel registerUserWithTooLongPassword(RegistrationBodyModel registrationData) {
         return given(registrationRequestSpec)
                 .body(registrationData)
                 .when()
@@ -71,5 +71,5 @@ public class RegistrationApiClient {
                 .spec(wrongPasswordResponseSpecification)
                 .extract()
                 .as(WrongPasswordResponseModel.class);
-     }
+    }
 }

@@ -7,7 +7,7 @@ import static specs.login.LoginSpec.*;
 
 public class LoginApiClient {
 
-    public SuccessfulLoginResponseModel loginUser(LoginBodyModel loginData){
+    public SuccessfulLoginResponseModel loginUser(LoginBodyModel loginData) {
         return given(loginRequestSpec)
                 .body(loginData)
                 .when()
@@ -17,7 +17,7 @@ public class LoginApiClient {
                 .extract().as(SuccessfulLoginResponseModel.class);
     }
 
-    public InvalidCredentialsLoginResponseModel loginUserWithWrongPassword(LoginBodyModel loginData){
+    public InvalidCredentialsLoginResponseModel loginUserWithWrongPassword(LoginBodyModel loginData) {
         return given(loginRequestSpec)
                 .body(loginData)
                 .when()
@@ -27,7 +27,7 @@ public class LoginApiClient {
                 .extract().as(InvalidCredentialsLoginResponseModel.class);
     }
 
-    public WithoutRefreshTokenLoginResponseModel updateTokenWithoutRefreshToken(WithoutRefreshTokenLoginBodyModel emptyRefreshToken){
+    public WithoutRefreshTokenLoginResponseModel updateTokenWithoutRefreshToken(WithoutRefreshTokenLoginBodyModel emptyRefreshToken) {
         return given(loginRequestSpec)
                 .body(emptyRefreshToken)
                 .when()
@@ -37,7 +37,7 @@ public class LoginApiClient {
                 .extract().as(WithoutRefreshTokenLoginResponseModel.class);
     }
 
-    public InvalidRefreshTokenResponseModel refreshAccessTokenWithInvalidRefreshToken(InvalidRefreshTokenBodyModel invalidTokenBodyModel){
+    public InvalidRefreshTokenResponseModel refreshAccessTokenWithInvalidRefreshToken(InvalidRefreshTokenBodyModel invalidTokenBodyModel) {
         return given(loginRequestSpec)
                 .body(invalidTokenBodyModel)
                 .when()
@@ -47,7 +47,7 @@ public class LoginApiClient {
                 .extract().as(InvalidRefreshTokenResponseModel.class);
     }
 
-    public InvalidRefreshTokenResponseModel  refreshAccessTokenWithAccessTokenInsteadOfRefreshToken(InvalidRefreshTokenBodyModel invalidTokenBodyModel){
+    public InvalidRefreshTokenResponseModel refreshAccessTokenWithAccessTokenInsteadOfRefreshToken(InvalidRefreshTokenBodyModel invalidTokenBodyModel) {
         return given(loginRequestSpec)
                 .body(invalidTokenBodyModel)
                 .when()
