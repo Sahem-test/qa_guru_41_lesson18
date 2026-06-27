@@ -12,7 +12,7 @@ import static testData.TestData.*;
 
 public class RegistrationTests extends TestBase {
     TestData td = new TestData();
-    ApiClient api = new ApiClient();
+
 
     @Test
     public void successfulRegistrationTest() {
@@ -55,7 +55,7 @@ public class RegistrationTests extends TestBase {
 
         step("Проверить ошибку при регистрации с неподдерживаемым Content-Type", () -> {
             RegistrationBodyModel registrationData = new RegistrationBodyModel(td.username, td.password);
-            UnsupportedMediaTypeRegistrationBodyModel unsupportedMediaTypeResponseModel = api.registration().checkMediaType(registrationData);
+            UnsupportedMediaTypeRegistrationBodyModel unsupportedMediaTypeResponseModel = api.registration().registerUserWithUnsupportedMediaType(registrationData);
 
             String actualError = unsupportedMediaTypeResponseModel.detail();
             assertThat(actualError).isEqualTo(EXPECTED_ERROR_UNSUPPORTED_MEDIA_TYPE);
@@ -67,7 +67,7 @@ public class RegistrationTests extends TestBase {
 
         step("Проверить ошибку при регистрации с пустым username", () -> {
             RegistrationBodyModel registrationData = new RegistrationBodyModel("", td.password);
-            EmptyFieldUsernameResponseModel emptyFieldUsernameResponseModel = api.registration().emptyFieldUsernameResponseModel(registrationData);
+            EmptyFieldUsernameResponseModel emptyFieldUsernameResponseModel = api.registration().registerUserWithEmptyUsername(registrationData);
 
             String actualError = emptyFieldUsernameResponseModel.username().get(0);
             assertThat(actualError).isEqualTo(EXPECTED_ERROR_NOT_BE_BLANK);
@@ -79,7 +79,7 @@ public class RegistrationTests extends TestBase {
 
         step("Проверить ошибку при регистрации с пустым password", () -> {
             RegistrationBodyModel registrationData = new RegistrationBodyModel(td.username, "");
-            WrongPasswordResponseModel wrongPasswordResponseModel = api.registration().wrongPasswordResponseModel(registrationData);
+            WrongPasswordResponseModel wrongPasswordResponseModel = api.registration().registerUserWithEmptyPassword(registrationData);
 
             String actualError = wrongPasswordResponseModel.password().get(0);
             assertThat(actualError).isEqualTo(EXPECTED_ERROR_NOT_BE_BLANK);

@@ -29,7 +29,7 @@ public class RegistrationApiClient {
                 .as(ExistingUserResponseModel.class);
     }
 
-    public UnsupportedMediaTypeRegistrationBodyModel checkMediaType(RegistrationBodyModel registrationData){
+    public UnsupportedMediaTypeRegistrationBodyModel registerUserWithUnsupportedMediaType(RegistrationBodyModel registrationData){
         return given(unsupportedMediaTypeRegistrationRequestSpec)
                 .body(registrationData)
                 .when()
@@ -40,7 +40,7 @@ public class RegistrationApiClient {
                 .as(UnsupportedMediaTypeRegistrationBodyModel.class);
      }
 
-     public EmptyFieldUsernameResponseModel emptyFieldUsernameResponseModel(RegistrationBodyModel registrationData){
+     public EmptyFieldUsernameResponseModel registerUserWithEmptyUsername(RegistrationBodyModel registrationData){
         return given(registrationRequestSpec)
                 .body(registrationData)
                 .when()
@@ -51,7 +51,7 @@ public class RegistrationApiClient {
                 .as(EmptyFieldUsernameResponseModel.class);
      }
 
-     public WrongPasswordResponseModel wrongPasswordResponseModel(RegistrationBodyModel registrationData){
+     public WrongPasswordResponseModel registerUserWithEmptyPassword(RegistrationBodyModel registrationData){
         return given(registrationRequestSpec)
                 .body(registrationData)
                 .when()
